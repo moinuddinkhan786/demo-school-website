@@ -322,7 +322,7 @@ function VisitUsModal({
 }) {
   return (
     <div
-      className={`fixed inset-0 z-[80] grid place-items-center px-4 py-6 transition duration-200 ease-out ${
+      className={`fixed inset-0 z-[80] overflow-y-auto px-4 py-5 transition duration-200 ease-out md:grid md:place-items-center md:py-6 ${
         open
           ? "pointer-events-auto opacity-100"
           : "pointer-events-none opacity-0"
@@ -336,7 +336,7 @@ function VisitUsModal({
       />
 
       <section
-        className={`relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-md bg-white shadow-2xl transition duration-200 ease-out ${
+        className={`relative mx-auto min-h-0 w-full max-w-5xl overflow-hidden rounded-md bg-white shadow-2xl transition duration-200 ease-out md:max-h-[92vh] md:overflow-y-auto ${
           open ? "translate-y-0 scale-100" : "translate-y-3 scale-[0.98]"
         }`}
         role="dialog"
@@ -344,11 +344,11 @@ function VisitUsModal({
         aria-labelledby="visit-us-title"
       >
         <div className="grid md:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative min-h-[320px] bg-[#e2f0e8] md:min-h-[520px]">
+          <div className="relative min-h-[260px] bg-[#e2f0e8] md:min-h-[520px]">
             <iframe
               title="Pathways School Noida map"
               src={schoolContact.mapUrl}
-              className="h-full min-h-[320px] w-full border-0 md:min-h-[520px]"
+              className="h-full min-h-[260px] w-full border-0 md:min-h-[520px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
@@ -362,10 +362,10 @@ function VisitUsModal({
             </div>
           </div>
 
-          <div className="relative bg-[#f7f4ed] px-6 py-8 md:px-8 md:py-10">
+          <div className="relative bg-[#f7f4ed] px-5 py-7 pb-8 md:px-8 md:py-10">
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-sm border border-[#173b4a]/15 bg-white text-xl leading-none text-[#173b4a] transition hover:border-[#e84135] hover:text-[#e84135]"
+              className="sticky left-full top-3 z-10 -mb-9 grid h-9 w-9 place-items-center rounded-sm border border-[#173b4a]/15 bg-white text-xl leading-none text-[#173b4a] transition hover:border-[#e84135] hover:text-[#e84135] md:absolute md:right-4 md:top-4 md:mb-0"
               aria-label="Close modal"
             >
               x
@@ -432,7 +432,7 @@ function VisitUsModal({
               </div>
             </div>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 pb-1 sm:flex-row">
               <button
                 onClick={onGetInTouch}
                 className="inline-flex items-center justify-center rounded-sm bg-[#e84135] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-white shadow-md transition hover:bg-[#c93529]"
