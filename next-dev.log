@@ -1,0 +1,23 @@
+
+> my-app@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.29.99:3000
+✓ Ready in 1527ms
+Creating turbopack project { dir: 'E:\\aib innovations\\NEW WEBSITE\\my-app', testMode: true }
+
+ GET / 200 in 1714ms (next.js: 823ms, application-code: 891ms)
+✓ Compiled in 2.3s
+ GET / 200 in 401ms (next.js: 42ms, application-code: 359ms)
+ GET / 200 in 1830ms (next.js: 863ms, application-code: 967ms)
+ GET / 200 in 272ms (next.js: 120ms, application-code: 151ms)
+ GET / 200 in 279ms (next.js: 19ms, application-code: 260ms)
+ GET / 200 in 772ms (next.js: 29ms, application-code: 743ms)
+ GET / 200 in 178ms (next.js: 19ms, application-code: 159ms)
+ GET / 200 in 491ms (next.js: 147ms, application-code: 345ms)
+ GET / 200 in 285ms (next.js: 38ms, application-code: 247ms)
+✓ Compiled in 886ms
+ GET / 200 in 1059ms (next.js: 651ms, application-code: 408ms)
+ GET / 200 in 124ms (next.js: 19ms, application-code: 105ms)
