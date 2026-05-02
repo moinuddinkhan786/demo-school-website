@@ -1317,14 +1317,8 @@ export default function Home() {
         </div>
 
         <div className="border-t border-white/15">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-4 text-[11px] text-white/75 md:flex-row">
-            <p>(c) 2024 SDPS International School. All rights reserved.</p>
-            <p>
-              Site By:{" "}
-              <a href="#" className="text-[#ffffff] hover:underline">
-                Dezine N Digital
-              </a>
-            </p>
+          <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 text-center text-[11px] text-white/75">
+            <p>(c) 2024 to 2026 SDPS International School. All rights reserved.</p>
           </div>
         </div>
       </footer>
