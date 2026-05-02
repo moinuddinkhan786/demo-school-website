@@ -275,6 +275,16 @@ const quickLinks = [
   "CALENDAR",
 ];
 
+const schoolContact = {
+  name: "Pathways School Noida",
+  address: "Sector 100, Noida - 201304, Uttar Pradesh, India",
+  phone: "+91 120 461 7000",
+  email: "admissions.noida@pathways.in",
+  hours: "Monday to Friday, 8:30 AM - 4:30 PM",
+  mapUrl:
+    "https://www.google.com/maps?q=Pathways%20School%20Noida%20Sector%20100%20Noida&output=embed",
+};
+
 // ---------------- COMPONENTS ----------------
 
 function PrimaryButton({
@@ -298,12 +308,157 @@ function PrimaryButton({
   );
 }
 
+function VisitUsModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className={`fixed inset-0 z-[80] grid place-items-center px-4 py-6 transition duration-200 ease-out ${
+        open
+          ? "pointer-events-auto opacity-100"
+          : "pointer-events-none opacity-0"
+      }`}
+      aria-hidden={!open}
+    >
+      <button
+        className="absolute inset-0 bg-[#173b4a]/55 backdrop-blur-[2px]"
+        onClick={onClose}
+        aria-label="Close visit us modal"
+      />
+
+      <section
+        className={`relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-md bg-white shadow-2xl transition duration-200 ease-out ${
+          open ? "translate-y-0 scale-100" : "translate-y-3 scale-[0.98]"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="visit-us-title"
+      >
+        <div className="grid md:grid-cols-[1.1fr_0.9fr]">
+          <div className="relative min-h-[320px] bg-[#e2f0e8] md:min-h-[520px]">
+            <iframe
+              title="Pathways School Noida map"
+              src={schoolContact.mapUrl}
+              className="h-full min-h-[320px] w-full border-0 md:min-h-[520px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <div className="pointer-events-none absolute left-5 top-5 rounded-sm bg-white/95 px-4 py-3 shadow-md">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e84135]">
+                Campus Location
+              </p>
+              <p className="mt-1 text-sm font-semibold text-[#173b4a]">
+                Map pin preview
+              </p>
+            </div>
+          </div>
+
+          <div className="relative bg-[#f7f4ed] px-6 py-8 md:px-8 md:py-10">
+            <button
+              onClick={onClose}
+              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-sm border border-[#173b4a]/15 bg-white text-xl leading-none text-[#173b4a] transition hover:border-[#e84135] hover:text-[#e84135]"
+              aria-label="Close modal"
+            >
+              x
+            </button>
+
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#008579]">
+              Visit Us
+            </p>
+            <h2
+              id="visit-us-title"
+              className="mt-3 max-w-sm text-3xl font-light leading-tight text-[#e84135] md:text-4xl"
+            >
+              Plan your campus visit
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#173b4a]">
+              We welcome families to experience the campus, meet the admissions
+              team, and understand the Pathways learning environment in person.
+            </p>
+
+            <div className="mt-7 space-y-5 border-y border-[#173b4a]/15 py-6">
+              <div>
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#e84135]">
+                  Address
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[#173b4a]">
+                  {schoolContact.name}
+                  <br />
+                  {schoolContact.address}
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#e84135]">
+                    Phone
+                  </h3>
+                  <a
+                    href={`tel:${schoolContact.phone.replaceAll(" ", "")}`}
+                    className="mt-2 block text-sm text-[#173b4a] hover:text-[#e84135]"
+                  >
+                    {schoolContact.phone}
+                  </a>
+                </div>
+                <div>
+                  <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#e84135]">
+                    Email
+                  </h3>
+                  <a
+                    href={`mailto:${schoolContact.email}`}
+                    className="mt-2 block break-words text-sm text-[#173b4a] hover:text-[#e84135]"
+                  >
+                    {schoolContact.email}
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#e84135]">
+                  Office Hours
+                </h3>
+                <p className="mt-2 text-sm text-[#173b4a]">
+                  {schoolContact.hours}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={`mailto:${schoolContact.email}`}
+                className="inline-flex items-center justify-center rounded-sm bg-[#e84135] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-white shadow-md transition hover:bg-[#c93529]"
+              >
+                Get In Touch
+              </a>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  `${schoolContact.name}, ${schoolContact.address}`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-sm border border-[#008579] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-[#008579] transition hover:bg-[#008579] hover:text-white"
+              >
+                Open Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 // ---------------- PAGE ----------------
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(foundationTabs[0].key);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [visitModalOpen, setVisitModalOpen] = useState(false);
 
   const currentTab =
     foundationTabs.find((t) => t.key === activeTab) ?? foundationTabs[0];
@@ -315,6 +470,22 @@ export default function Home() {
     }, 6000);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setVisitModalOpen(false);
+      }
+    };
+
+    document.body.style.overflow = visitModalOpen ? "hidden" : "";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [visitModalOpen]);
 
   return (
     <main className="min-h-screen bg-white font-sans text-[#173b4a]">
@@ -370,9 +541,12 @@ export default function Home() {
           {/* Right buttons */}
           <div className="flex items-center gap-2">
             <button className="hidden rounded-sm bg-[#008579] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-[#00695f] md:block">
-              Let's Talk
+              Let&apos;s Talk
             </button>
-            <button className="hidden rounded-sm bg-[#e84135] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-[#c93529] md:block">
+            <button
+              onClick={() => setVisitModalOpen(true)}
+              className="hidden rounded-sm bg-[#e84135] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white transition hover:bg-[#c93529] md:block"
+            >
               Visit Us
             </button>
             <button
@@ -398,15 +572,26 @@ export default function Home() {
             </ul>
             <div className="mt-4 flex gap-2">
               <button className="flex-1 rounded-sm bg-[#008579] py-2 text-[11px] font-bold uppercase text-white">
-                Let's Talk
+                Let&apos;s Talk
               </button>
-              <button className="flex-1 rounded-sm bg-[#e84135] py-2 text-[11px] font-bold uppercase text-white">
+              <button
+                onClick={() => {
+                  setVisitModalOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex-1 rounded-sm bg-[#e84135] py-2 text-[11px] font-bold uppercase text-white"
+              >
                 Visit Us
               </button>
             </div>
           </div>
         )}
       </header>
+
+      <VisitUsModal
+        open={visitModalOpen}
+        onClose={() => setVisitModalOpen(false)}
+      />
 
       {/* ============== HERO ============== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0e6f82] via-[#0a5a6b] to-[#083e4b] text-white">
@@ -556,13 +741,14 @@ export default function Home() {
               <p>
                 Pathways School Noida welcomes families who believe in
                 differentiated learning that meets every learner where they are.
-                If you're looking for a school that values curiosity, creativity,
-                empathy, and global citizenship, you'll feel right at home here.
+                If you&apos;re looking for a school that values curiosity,
+                creativity, empathy, and global citizenship, you&apos;ll feel right
+                at home here.
               </p>
               <p>
                 Our learning environment is ideal for students who are
                 open-minded, eager to explore, and ready to take ownership of
-                their journey, whether they're moving from another IB school,
+                their journey, whether they&apos;re moving from another IB school,
                 transitioning from a different curriculum, or beginning their
                 very first experience with formal education.
               </p>
@@ -674,7 +860,7 @@ export default function Home() {
                 }`}
               >
                 <blockquote className="mx-auto max-w-3xl text-sm italic leading-7 text-[#173b4a] md:text-base md:leading-8">
-                  "{t.quote}"
+                  &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <div className="mt-6">
                   <p className="text-base font-bold text-[#173b4a]">{t.name}</p>
