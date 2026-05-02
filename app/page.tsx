@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { FormEvent, ReactNode } from "react";
 
 const imageBase = "https://www.pathwaysnoida.edu.in";
@@ -284,6 +284,12 @@ const schoolContact = {
   mapUrl:
     "https://www.google.com/maps?q=Pathways%20School%20Noida%20Sector%20100%20Noida&output=embed",
 };
+
+const campusImage =
+  "https://images.pexels.com/photos/17792676/pexels-photo-17792676.jpeg?auto=compress&cs=tinysrgb&w=1800";
+const heroVideo = "https://assets.mixkit.co/videos/35954/35954-720.mp4";
+const heroVideoPoster =
+  "https://assets.mixkit.co/videos/35954/35954-thumb-720-0.jpg";
 
 // ---------------- COMPONENTS ----------------
 
@@ -670,6 +676,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visitModalOpen, setVisitModalOpen] = useState(false);
   const [enquiryDrawerOpen, setEnquiryDrawerOpen] = useState(false);
+  const [heroVideoReady, setHeroVideoReady] = useState(false);
+  const heroVideoRef = useRef<HTMLDivElement | null>(null);
 
   const currentTab =
     foundationTabs.find((t) => t.key === activeTab) ?? foundationTabs[0];
@@ -699,6 +707,28 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [visitModalOpen, enquiryDrawerOpen]);
+
+  useEffect(() => {
+    const heroVideoElement = heroVideoRef.current;
+
+    if (!heroVideoElement) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeroVideoReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(heroVideoElement);
+
+    return () => observer.disconnect();
+  }, []);
 
   function openEnquiryDrawer() {
     setVisitModalOpen(false);
@@ -824,34 +854,68 @@ export default function Home() {
         onClose={() => setEnquiryDrawerOpen(false)}
       />
 
+      <a
+        href="https://wa.me/911204617000"
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-5 right-5 z-[70] grid h-14 w-14 place-items-center rounded-full bg-[#32c85a] text-white shadow-lg ring-4 ring-white/90 transition hover:-translate-y-0.5 hover:bg-[#27b84e]"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg
+          viewBox="0 0 32 32"
+          className="h-7 w-7"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M16.02 3.2A12.74 12.74 0 0 0 5.24 22.7L3.6 28.8l6.25-1.6A12.76 12.76 0 1 0 16.02 3.2Zm0 2.28a10.48 10.48 0 0 1 8.88 16.03 10.46 10.46 0 0 1-13.9 3.08l-.45-.27-3.72.95.98-3.62-.3-.47A10.48 10.48 0 0 1 16.02 5.48Zm-4.2 4.5c-.23 0-.6.08-.92.43-.32.35-1.22 1.2-1.22 2.92s1.25 3.38 1.43 3.62c.18.23 2.42 3.88 6.02 5.28 2.99 1.16 3.6.93 4.25.87.65-.06 2.1-.86 2.4-1.69.29-.83.29-1.54.2-1.69-.08-.14-.32-.23-.67-.4-.35-.18-2.1-1.04-2.42-1.15-.32-.12-.56-.18-.8.17-.23.35-.92 1.15-1.13 1.38-.2.23-.41.26-.76.09-.35-.18-1.49-.55-2.84-1.75-1.05-.94-1.76-2.1-1.97-2.45-.2-.35-.02-.54.15-.72.16-.16.35-.41.53-.62.18-.2.23-.35.35-.58.12-.23.06-.44-.03-.62-.08-.18-.8-1.93-1.1-2.64-.29-.7-.58-.6-.8-.61h-.67Z" />
+        </svg>
+      </a>
+
       {/* ============== HERO ============== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0e6f82] via-[#0a5a6b] to-[#083e4b] text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url(${imageBase}/discover-lp-new/images/hero-wtap-img.jpg)`,
-          }}
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-32">
-          <h1 className="max-w-3xl text-4xl font-light uppercase leading-[1.05] tracking-wide md:text-6xl">
-            The Pathways
-            <br />
-            <span className="font-normal">Roadmap</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-sm leading-7 text-white/95 md:text-base md:leading-8">
-            There are schools and then there is{" "}
-            <em className="font-semibold not-italic text-[#f7d046]">Pathways</em>.
-            Everything you would ever wish for from a school, and more. We invite
-            you to embark on an enriching educational journey in a truly global,
-            fully supportive learning environment. Turning aptitude into expertise.
-            Talent into stardom. Hobbies into careers. And good children into
-            great human beings.
-          </p>
-          <div className="mt-8">
-            <PrimaryButton variant="red" onClick={openEnquiryDrawer}>
-              Get In Touch
-            </PrimaryButton>
+      <section className="relative overflow-hidden bg-[#fbfaf4] text-[#073144]">
+        <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(90deg,rgba(14,111,130,0.08)_1px,transparent_1px),linear-gradient(rgba(14,111,130,0.06)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="relative mx-auto grid min-h-[680px] max-w-7xl items-center gap-10 px-6 py-16 md:grid-cols-[0.82fr_1.18fr] md:py-20">
+          <div className="relative z-10 max-w-xl">
+            <h1 className="text-4xl font-semibold uppercase leading-tight tracking-wide text-[#d84f3f] md:text-6xl">
+              The Pathways
+              <br />
+              Roadmap
+            </h1>
+            <p className="mt-8 text-base leading-8 text-[#073144] md:text-lg">
+              There are schools and then there is{" "}
+              <em className="font-semibold not-italic">Pathways</em>. Everything
+              you would ever wish for from a school, and more. We invite you to
+              embark on an enriching educational journey in a truly global, fully
+              supportive learning environment. Turning aptitude into expertise.
+              Talent into stardom. Hobbies into careers. And good children into
+              great human beings.
+            </p>
+            <div className="mt-8">
+              <PrimaryButton variant="red" onClick={openEnquiryDrawer}>
+                Get In Touch
+              </PrimaryButton>
+            </div>
+          </div>
+
+          <div
+            ref={heroVideoRef}
+            className="relative mx-auto aspect-square w-full max-w-[520px] md:max-w-[640px]"
+          >
+            <div className="absolute inset-0 rounded-full border border-[#173b4a]/20" />
+            <div className="absolute inset-6 rounded-full border border-[#173b4a]/15" />
+            <div className="absolute inset-[9%] overflow-hidden rounded-full bg-[#173b4a] shadow-2xl">
+              <video
+                className="block h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload={heroVideoReady ? "auto" : "none"}
+                poster={heroVideoPoster}
+              >
+                {heroVideoReady && <source src={heroVideo} type="video/mp4" />}
+              </video>
+            </div>
           </div>
         </div>
       </section>
@@ -1155,22 +1219,23 @@ export default function Home() {
       </section>
 
       {/* ============== CAMPUS ============== */}
-      <section id="campus" className="relative overflow-hidden">
+      <section id="campus" className="relative min-h-[500px] overflow-hidden md:min-h-[560px]">
         <img
-          src={`${imageBase}/assets/img/homepage-thecampas.jpg`}
-          alt="The Pathways Campus"
-          className="h-[450px] w-full object-cover md:h-[520px]"
+          src={campusImage}
+          alt="A school campus building with a green lawn"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 grid place-items-center px-6 text-center text-white">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.45em]">
+        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/45" />
+        <div className="relative z-10 flex min-h-[500px] items-center justify-center px-6 py-16 text-center text-white md:min-h-[560px]">
+          <div className="mx-auto flex max-w-3xl flex-col items-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.45em] md:text-sm">
               The
             </p>
-            <h2 className="mt-2 text-5xl font-light uppercase tracking-wide md:text-6xl">
+            <h2 className="mt-4 text-4xl font-light uppercase leading-none tracking-wide md:text-6xl">
               Campus
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 md:text-base">
+            <p className="mx-auto mt-6 max-w-xl text-sm leading-7 md:text-base">
               A green, open and thoughtfully designed learning environment for
               academics, sport, creativity and community life.
             </p>
@@ -1189,7 +1254,7 @@ export default function Home() {
               <img
                 src={`${imageBase}/assets/img/client1-noida.svg`}
                 alt="Pathways School Noida"
-                className="h-16 brightness-0 invert"
+                className="h-16 rounded-sm bg-white px-3 py-2"
               />
               <p className="mt-5 text-sm leading-6 text-white/85">
                 Sector 100, Noida – 201304
