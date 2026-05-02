@@ -1318,7 +1318,7 @@ export default function Home() {
 
         <div className="border-t border-white/15">
           <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 text-center text-[11px] text-white/75">
-            <p>(c) 2024 to 2026 SDPS International School. All rights reserved.</p>
+            <p>(c) 2026 SDPS International School. All rights reserved.</p>
           </div>
         </div>
       </footer>
