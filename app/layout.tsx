@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SDPS International School",
   icons: {
-    icon: "/sdps-logo.png",
-    shortcut: "/sdps-logo.png",
-    apple: "/sdps-logo.png",
+    icon: "/sdps-favicon.png",
+    shortcut: "/sdps-favicon.png",
+    apple: "/sdps-favicon.png",
   },
 };
 
