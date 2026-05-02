@@ -4,21 +4,20 @@
 import { useState, useEffect, useRef } from "react";
 import type { FormEvent, ReactNode } from "react";
 
-const imageBase = "https://www.pathwaysnoida.edu.in";
+const imageBase = "https://lightcoral-goshawk-899795.hostingersite.com";
+const logoSrc = `${imageBase}/wp-content/uploads/2025/10/sdps-logo-new.png`;
 
 // ---------------- DATA ----------------
 
 const navItems = [
   {
-    label: "Know Pathways",
+    label: "About SDPS",
     children: [
       "The School",
       "Vision & Mission",
-      "Leadership & Governance",
-      "The Campus",
-      "Awards & Honours",
-      "Affiliations & Accreditations",
-      "Our Mascot",
+      "Our Philosophy",
+      "Character Building",
+      "School Community",
     ],
   },
   {
@@ -36,37 +35,31 @@ const navItems = [
     ],
   },
   {
-    label: "Beyond Academics",
+    label: "Life At SDPS",
     children: [
       "Overview",
       "Sports",
-      "The Arts",
-      "Expeditions & International Exchange",
-      "Community Service",
-      "Student Council",
+      "Co-Curricular",
+      "Overall Development",
+      "Academic Events",
+    ],
+  },
+  {
+    label: "Facilities",
+    children: [
+      "Swimming Pool",
+      "Mess",
+      "Library",
+      "Hi-Tech Labs",
     ],
   },
   {
     label: "Admissions",
     children: [
-      "Overview",
-      "Admissions Journey",
-      "Pre-Term & Rolling Admissions",
-      "International Families",
-      "Fee Schedule",
-      "Scholarships",
-      "FAQs",
-    ],
-  },
-  {
-    label: "Our Community",
-    children: [
-      "Overview",
-      "International Community",
-      "Alumni",
-      "Parents' Speak",
-      "Press",
-      "Pathways Privileges",
+      "Admission Enquiry",
+      "Visit Campus",
+      "Fee Details",
+      "Parent Connect",
     ],
   },
   {
@@ -82,24 +75,24 @@ const navItems = [
 
 const topTiles = [
   {
-    title: "Know Pathways",
-    image: `${imageBase}/assets/img/landing-1.jpg`,
-    text: "Pathways aims to build and nurture a community of thinking, compassionate global citizens, who are committed to living with responsibility, learning and innovating with enthusiasm, and balancing a strong work ethos with a sense of play.",
+    title: "About SDPS",
+    image: `${imageBase}/wp-content/uploads/elementor/thumbs/IMG_0872-1-scaled-rcwly6g86lqkhmtv0a9vrq5eb2kap6ezrsp55k7zl4.jpg`,
+    text: "SDPS International School, located on Khandwa Road, Indore, stands as a beacon of holistic education and character building.",
   },
   {
     title: "Academics",
-    image: `${imageBase}/assets/img/landing-6.jpg`,
-    text: "An International Baccalaureate (IB) Continuum School; Pathways School Noida provides a safe, tranquil, and intellectually stimulating environment while catering to the unique learning needs of each student, with ample opportunities for project work and discovery learning.",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-1-683x1024.jpg`,
+    text: "Learning at SDPS goes beyond textbooks, balancing academic excellence with curiosity, creativity, values, and social awareness.",
   },
   {
-    title: "Beyond Academics",
-    image: `${imageBase}/assets/img/landing-7.jpg`,
-    text: "There are multiple pathways to cultivate the holistic development of students and equip them with essential life skills. Co-curricular activities like Sports, The Arts, Community Service, and Leadership platforms foster critical thinking, self-expression, and cultural appreciation.",
+    title: "Sports",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-2-683x1024.jpg`,
+    text: "Sports and active campus life help students build confidence, teamwork, discipline, and a healthy competitive spirit.",
   },
   {
-    title: "Admissions",
-    image: `${imageBase}/assets/img/landing-2-5.jpg`,
-    text: "We invite you to embark on a truly enriching educational journey that will ignite your curiosity and nurture your innate potential. Discover our vibrant learning community that celebrates diversity, and experience first-hand the myriad offerings.",
+    title: "Co-Curricular",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-3-683x1024.jpg`,
+    text: "Co-curricular experiences support expression, leadership, collaboration, and the overall development of every learner.",
   },
 ];
 
@@ -107,118 +100,111 @@ const foundationTabs = [
   {
     key: "philosophy",
     label: "Our Philosophy",
-    image: `${imageBase}/discover-lp-new/images/slider-pic1.jpg`,
+    image: `${imageBase}/wp-content/uploads/elementor/thumbs/IMG_0867-1-scaled-rcwlsstdflt35sllpedefjmy6sgdmso6d48v639rma.jpg`,
     content: [
-      "Pathways School Noida aims to build and nurture a community of thinking, compassionate world citizens, who are committed to living with responsibility, learning with enthusiasm, and balancing a strong work ethos with a sense of play.",
-      "We invite you to embark on a truly enriching educational journey that will ignite your curiosity and nurture your innate potential. Discover our vibrant learning community that celebrates diversity, and experience first-hand the myriad offerings.",
+      "At SDPS International School, learning goes far beyond textbooks. Education is not just about acquiring knowledge; it is about igniting curiosity, fostering creativity, and shaping values that last a lifetime.",
+      "Guided by the motto Learn, Lead, and Serve, the school blends academic excellence with moral integrity and social awareness.",
     ],
   },
   {
     key: "curriculum",
     label: "Curriculum",
-    image: `${imageBase}/discover-lp-new/images/mid-pic7.jpg`,
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-1-683x1024.jpg`,
     sections: [
       {
-        heading: "Early Years (12 months - 6 years)",
-        text: "Our Early Years programme, inspired by IB PYP, Reggio Emilia, Playway, and Maria Montessori, offers a comprehensive and dynamic curriculum that lays the foundation for every child's academic, social, and emotional wellbeing.",
+        heading: "Academic Excellence",
+        text: "SDPS focuses on strong conceptual understanding, disciplined study habits, and classroom learning that helps students apply knowledge with confidence.",
       },
       {
-        heading: "IB Primary Years Program (6 - 11 years)",
-        text: "The PYP marks the start of a lifelong journey. It develops caring and culturally aware children to become active participants in their own learning.",
+        heading: "Curiosity-Led Learning",
+        text: "The school encourages students to ask questions, explore ideas, and build a genuine love for learning beyond textbooks.",
       },
       {
-        heading: "IB Middle Years Program (11 - 16 years)",
-        text: "Building a solid academic foundation, the MYP develops students' confidence in managing their own learning and making connections between their learning in the classroom and the real world.",
+        heading: "Values With Knowledge",
+        text: "Academic growth is paired with moral integrity, social awareness, and habits that prepare students to lead responsibly.",
       },
       {
-        heading: "IB Diploma Program (16 - 18 years)",
-        text: "A future-ready programme that builds students' inquiring mindset, fosters their desire to learn, and prepares them to excel at their careers and lead meaningful lives.",
-      },
-      {
-        heading: "IB Career-related Program (16 - 18 years)",
-        text: "A unique programme for students in their final school years. It equips them with future-ready skills and prepares them to follow their career pathways—combining academic subjects with their own professional interests.",
+        heading: "Confident Communication",
+        text: "Students are supported to express themselves clearly through classroom participation, public events, and collaborative activities.",
       },
     ],
   },
   {
     key: "co-curricular",
-    label: "Co-Curricular Enrichment",
-    image: `${imageBase}/discover-lp-new/images/slider-pic8.jpg`,
+    label: "Life At SDPS",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-3-683x1024.jpg`,
     content: [
-      "There are multiple pathways to cultivate the holistic development of students and equip them with essential life skills. Co-curricular activities like Sports, The Arts, Community Service, and Leadership platforms foster critical thinking, self-expression, and cultural appreciation.",
+      "Life at SDPS brings together academics, sports, co-curricular opportunities, and overall development so students grow with balance, confidence, and purpose.",
     ],
   },
   {
     key: "campus",
-    label: "Campus",
-    image: `${imageBase}/assets/img/homepage-thecampas.jpg`,
+    label: "Facilities",
+    image: `${imageBase}/wp-content/uploads/2025/10/library-683x1024.jpg`,
     content: [
-      "Our 10-acre campus boasts state-of-the-art technology and thoughtfully designed spaces that foster innovation and learning. We've embraced innovative approaches to reduce our carbon footprint, incorporating age-old Indian architectural techniques that make our buildings not only environmentally friendly but also intelligently sustainable.",
+      "The campus supports student life with top-notch facilities including a swimming pool, mess, library, and hi-tech labs designed for practical learning and daily wellbeing.",
     ],
   },
   {
     key: "faculty",
-    label: "Faculty",
-    image: `${imageBase}/discover-lp-new/images/slider-pic7.jpg`,
+    label: "Character Building",
+    image: `${imageBase}/wp-content/uploads/elementor/thumbs/IMG_0854-1-scaled-rcwlh7h0v2ui756f1dsrttw6qx7bsk9joiuo0zdloq.jpg`,
     content: [
-      "Pathways School Noida is led by an extremely talented team of educators. Each one of our faculty has an innate passion, not just to teach, but also to learn. Their flexible, student-centered approach facilitates learning in its truest sense. Pathways also strongly believes in developing its faculty and encouraging them to enhance their professional skills through dedicated workshops and training sessions, both locally and internationally. Pastoral care is integral to our faculty's approach, ensuring each child's wellbeing is always a priority.",
+      "Founded under the aegis of the SDPS Women's Welfare Society, the school was established with a vision to nurture young minds into confident, compassionate, and responsible global citizens.",
     ],
   },
   {
     key: "highlights",
     label: "Highlights",
-    image: `${imageBase}/discover-lp-new/images/mid-pic5.jpg`,
+    image: `${imageBase}/wp-content/uploads/2025/10/lab-683x1024.jpg`,
     bullets: [
-      "Pathways School Noida is jointly accredited by the Council of International Schools (CIS) and the New England Association of Schools & Colleges (NEASC).",
-      "The school has been recognized as a Global Microsoft Showcase School for its leadership in integrating technology with teaching and learning.",
-      "Pathways School Noida is consistently ranked as the No. 1 International School in North India by the C-Fore survey.",
-      "We are the first and only school chain in the world to be awarded with the 'LEED EB Platinum' rating for energy and environmental design by the United States Green Building Council.",
-      "Honoured with the 2025 International School Award by ISC Research, the school is proud to be the only one in India and one of just five worldwide to earn this distinction.",
+      "Holistic education and character building on Khandwa Road, Indore.",
+      "Academic and public events that keep students connected to real participation.",
+      "Sports, co-curricular learning, and overall development as key parts of school life.",
+      "Top-notch facilities including swimming pool, mess, library, and hi-tech labs.",
     ],
   },
 ];
 
 const partnerLogos = [
-  { src: "client-ib.svg", alt: "International Baccalaureate (IB) School in India" },
-  { src: "client-ib-continuum.svg", alt: "IB Continuum School" },
-  { src: "client-leed.svg", alt: "Leed Platinum School in India" },
-  { src: "client-cis.svg", alt: "CIS Accredited School in India" },
-  { src: "client-neasc.svg", alt: "NEASC Accredited Schools in India" },
-  { src: "client-microsoft.svg", alt: "Microsoft Showcase School" },
+  { src: `${imageBase}/wp-content/uploads/2025/10/simming-683x1024.jpg`, alt: "Swimming Pool" },
+  { src: `${imageBase}/wp-content/uploads/2025/10/mess1-683x1024.jpg`, alt: "Mess" },
+  { src: `${imageBase}/wp-content/uploads/2025/10/library-683x1024.jpg`, alt: "Library" },
+  { src: `${imageBase}/wp-content/uploads/2025/10/lab-683x1024.jpg`, alt: "Hi-Tech Labs" },
 ];
 
 const differenceItems = [
   {
-    title: "Multiple Intelligences Theory",
-    text: "Inspired by Dr. Howard Gardner, we implement the Multiple Intelligences approach to celebrate diverse student aptitudes, transforming learning into a personalized experience that transcends traditional literacy and numeracy.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic4.jpg`,
+    title: "Holistic Education",
+    text: "SDPS balances academics, values, creativity, and social awareness so students grow as confident and responsible individuals.",
+    image: `${imageBase}/wp-content/uploads/elementor/thumbs/IMG_0872-1-scaled-rcwly6g86lqkhmtv0a9vrq5eb2kap6ezrsp55k7zl4.jpg`,
   },
   {
-    title: "Student Centered Learning",
-    text: "Our teaching methodology encourages inquiry-based learning, fostering learner autonomy, critical thinking, and ethical awareness.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic5.jpg`,
+    title: "Curiosity and Creativity",
+    text: "Learning goes beyond textbooks through experiences that ignite curiosity, foster creativity, and help students think independently.",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-1-683x1024.jpg`,
     reverse: true,
   },
   {
-    title: "Technology Leadership",
-    text: "As a Microsoft Showcase School, Pathways enhances learning and creativity through integrated technology, while promoting responsible digital citizenship from an early age.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic3.jpg`,
+    title: "Sports and Teamwork",
+    text: "Sports experiences help students build discipline, resilience, teamwork, and a healthy sense of achievement.",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-2-683x1024.jpg`,
   },
   {
-    title: "International Mindedness",
-    text: "Pathways School Noida is a vibrant convergence point for global communities, with over 36 nationalities among its faculty and students, cultivating a global perspective and cultural understanding.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic1.jpg`,
+    title: "Co-Curricular Growth",
+    text: "Co-curricular activities give students space to express themselves, collaborate with peers, and develop leadership qualities.",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-3-683x1024.jpg`,
     reverse: true,
   },
   {
-    title: "Community Service",
-    text: "We empower students to make a meaningful impact through hands-on involvement in various social and environmental initiatives.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic6.jpg`,
+    title: "Overall Development",
+    text: "The school nurtures academic, physical, emotional, and social growth so each learner can move forward with confidence.",
+    image: `${imageBase}/wp-content/uploads/2025/10/usp-4-683x1024.jpg`,
   },
   {
-    title: "Pathwaysian Ecosystem",
-    text: "At Pathways, the power of community is our greatest strength with students, faculty, and parents connected as one close-knit family. Care takes precedence over curriculum, with support extending seamlessly across grades. Our open-door policy and regular touchpoints reassure parents that every child is seen, heard, and valued.",
-    image: `${imageBase}/discover-lp-new/images/mid-pic7.jpg`,
+    title: "Top-Notch Facilities",
+    text: "A swimming pool, mess, library, and hi-tech labs support a complete school environment for learning, wellbeing, and discovery.",
+    image: `${imageBase}/wp-content/uploads/2025/10/lab-683x1024.jpg`,
     reverse: true,
   },
 ];
@@ -226,63 +212,62 @@ const differenceItems = [
 const testimonials = [
   {
     quote:
-      "..It is my home - I've been deeply connected with all the wonderful teachers who have supported me through every step, as well as with my peers with whom I have fostered deep bonds. The environments both in and outside class are designed to be inclusive, supportive, and to push you to your greatest potential. I'm truly proud to call myself a Pathwaysian!",
-    name: "Meher Housego, IBCP 2",
-    role: "Student",
+      "Learning at SDPS goes beyond textbooks; it shapes curiosity, creativity, values, and confidence for life.",
+    name: "SDPS International School",
+    role: "Our Philosophy",
   },
   {
     quote:
-      "The school is my second home and it has shaped me into who I am today. The environment of learning and the teachers have always been supportive of my wide-eyed self.",
-    name: "Dilisha Khurana, Batch of 2025",
-    role: "Alumna",
+      "Learn, Lead, and Serve guides the school community toward academic excellence, moral integrity, and social awareness.",
+    name: "SDPS International School",
+    role: "School Motto",
   },
   {
     quote:
-      "Pathways taught me beyond the books. It not only made me question the norms of the world but also subsequently made me believe in myself and the power of my own intellect.",
-    name: "Ritika Sharma, Batch of 2014",
-    role: "Alumna",
+      "The school was established to nurture young minds into confident, compassionate, and responsible global citizens.",
+    name: "SDPS Women's Welfare Society",
+    role: "Founding Vision",
   },
   {
     quote:
-      "..not only have I been absolutely amazed by the standard of excellence in the curriculum of the IB, but I have also appreciated the way it is delivered by Pathways School Noida. Moreover, it was heartwarming to see how much her teachers cared for her, and I always knew that my daughter's education was in good hands.",
-    name: "Dr. Ajay Agarwal",
-    role: "Parent",
+      "Academic and public events help students participate, perform, and develop the confidence to engage with the wider community.",
+    name: "Life At SDPS",
+    role: "Events",
   },
   {
     quote:
-      "In education, we need to work with detail to bring out the best in each of our students. This need to blend long-term goals and the details with individual needs are at the heart of my belief in education as the critical building block of our societies.",
-    name: "Mr. Aaron Jacob",
-    role: "School Director",
-  },
-  {
-    quote:
-      "I have had the privilege of being in PSN since its inception in 2010 and have seen the school grow. Students are at the core of every interaction and engagement in school. I admire the culture of support and openness.",
-    name: "Ms. Smita Bhattacharya",
-    role: "Faculty",
+      "Top-notch facilities support classroom learning, practical exploration, healthy routines, and a balanced campus experience.",
+    name: "SDPS Campus",
+    role: "Facilities",
   },
 ];
 
-const universityLogos = Array.from({ length: 25 }, (_, i) => `bot-logo${i + 1}.jpg`);
+const facilityImages = [
+  `${imageBase}/wp-content/uploads/2025/10/simming-683x1024.jpg`,
+  `${imageBase}/wp-content/uploads/2025/10/mess1-683x1024.jpg`,
+  `${imageBase}/wp-content/uploads/2025/10/library-683x1024.jpg`,
+  `${imageBase}/wp-content/uploads/2025/10/lab-683x1024.jpg`,
+];
 
 const quickLinks = [
   "ENQUIRE NOW",
-  "CURRICULUM",
+  "ACADEMICS",
   "Campus Tour",
-  "FOOD MENU",
+  "FACILITIES",
   "Contact Us",
   "GOOGLE MAPS",
   "CAREERS",
-  "CALENDAR",
+  "EVENTS",
 ];
 
 const schoolContact = {
-  name: "Pathways School Noida",
-  address: "Sector 100, Noida - 201304, Uttar Pradesh, India",
-  phone: "+91 120 461 7000",
-  email: "admissions.noida@pathways.in",
+  name: "SDPS International School",
+  address: "Khandwa Road, Opp. Bilawali Tank, Indore (M.P.) 452020",
+  phone: "+91 97541 49007",
+  email: "enquiries@sdps.edu.in",
   hours: "Monday to Friday, 8:30 AM - 4:30 PM",
   mapUrl:
-    "https://www.google.com/maps?q=Pathways%20School%20Noida%20Sector%20100%20Noida&output=embed",
+    "https://www.google.com/maps?q=SDPS%20International%20School%20Khandwa%20Road%20Indore&output=embed",
 };
 
 const campusImage =
@@ -352,7 +337,7 @@ function VisitUsModal({
         <div className="grid md:grid-cols-[1.1fr_0.9fr]">
           <div className="relative min-h-[260px] bg-[#e2f0e8] md:min-h-[520px]">
             <iframe
-              title="Pathways School Noida map"
+              title="SDPS International School map"
               src={schoolContact.mapUrl}
               className="h-full min-h-[260px] w-full border-0 md:min-h-[520px]"
               loading="lazy"
@@ -388,7 +373,7 @@ function VisitUsModal({
             </h2>
             <p className="mt-4 text-sm leading-7 text-[#173b4a]">
               We welcome families to experience the campus, meet the admissions
-              team, and understand the Pathways learning environment in person.
+              team, and understand the SDPS learning environment in person.
             </p>
 
             <div className="mt-7 space-y-5 border-y border-[#173b4a]/15 py-6">
@@ -755,9 +740,9 @@ export default function Home() {
         <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
           <a href="#" className="flex items-center">
             <img
-              src={`${imageBase}/assets/img/client1-noida.svg`}
-              alt="Pathways School Noida"
-              className="h-12 md:h-14"
+              src={logoSrc}
+              alt="SDPS International School"
+              className="h-12 w-auto md:h-14"
             />
           </a>
 
@@ -855,7 +840,7 @@ export default function Home() {
       />
 
       <a
-        href="https://wa.me/911204617000"
+        href="https://wa.me/919754149007"
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-5 right-5 z-[70] grid h-14 w-14 place-items-center rounded-full bg-[#32c85a] text-white shadow-lg ring-4 ring-white/90 transition hover:-translate-y-0.5 hover:bg-[#27b84e]"
@@ -877,18 +862,19 @@ export default function Home() {
         <div className="relative mx-auto grid min-h-[680px] max-w-7xl items-center gap-10 px-6 py-16 md:grid-cols-[0.82fr_1.18fr] md:py-20">
           <div className="relative z-10 max-w-xl">
             <h1 className="text-4xl font-semibold uppercase leading-tight tracking-wide text-[#d84f3f] md:text-6xl">
-              The Pathways
+              SDPS International
               <br />
-              Roadmap
+              School
             </h1>
             <p className="mt-8 text-base leading-8 text-[#073144] md:text-lg">
-              There are schools and then there is{" "}
-              <em className="font-semibold not-italic">Pathways</em>. Everything
-              you would ever wish for from a school, and more. We invite you to
-              embark on an enriching educational journey in a truly global, fully
-              supportive learning environment. Turning aptitude into expertise.
-              Talent into stardom. Hobbies into careers. And good children into
-              great human beings.
+              Welcome to{" "}
+              <em className="font-semibold not-italic">
+                SDPS International School
+              </em>
+              , Indore. Located on Khandwa Road, the school stands as a beacon
+              of holistic education and character building, nurturing young
+              minds into confident, compassionate, and responsible global
+              citizens.
             </p>
             <div className="mt-8">
               <PrimaryButton variant="red" onClick={openEnquiryDrawer}>
@@ -1025,33 +1011,30 @@ export default function Home() {
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div className="overflow-hidden">
             <img
-              src={`${imageBase}/discover-lp-new/images/hero-wtap-img.jpg`}
-              alt="Students celebrating with trophy"
+              src={`${imageBase}/wp-content/uploads/elementor/thumbs/IMG_0872-1-scaled-rcwly6g86lqkhmtv0a9vrq5eb2kap6ezrsp55k7zl4.jpg`}
+              alt="Students at SDPS International School"
               className="h-[420px] w-full object-cover"
             />
           </div>
           <div>
             <h2 className="text-3xl font-light text-[#e84135] md:text-4xl">
-              Who Thrives at Pathways
+              About SDPS International School, Indore
             </h2>
             <div className="mt-5 space-y-4 text-sm leading-7 text-[#173b4a]">
               <p>
-                Pathways School Noida welcomes families who believe in
-                differentiated learning that meets every learner where they are.
-                If you&apos;re looking for a school that values curiosity,
-                creativity, empathy, and global citizenship, you&apos;ll feel right
-                at home here.
+                SDPS International School, located on Khandwa Road, Indore,
+                stands as a beacon of holistic education and character building.
+                The school was founded under the aegis of the SDPS Women&apos;s
+                Welfare Society.
               </p>
               <p>
-                Our learning environment is ideal for students who are
-                open-minded, eager to explore, and ready to take ownership of
-                their journey, whether they&apos;re moving from another IB school,
-                transitioning from a different curriculum, or beginning their
-                very first experience with formal education.
+                The institution was established with a vision to nurture young
+                minds into confident, compassionate, and responsible global
+                citizens.
               </p>
               <p>
-                We celebrate diversity in all its forms and support each child as
-                they grow into confident, compassionate learners.
+                Guided by Learn, Lead, and Serve, SDPS blends academic
+                excellence with moral integrity and social awareness.
               </p>
             </div>
           </div>
@@ -1062,15 +1045,15 @@ export default function Home() {
       <section className="bg-[#fbf8e7] py-14">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-2xl font-light text-[#e84135] md:text-3xl">
-            A Reflection of Our Journey Towards Excellence
+            Top-Notch Facilities
           </h2>
-          <div className="mt-10 grid grid-cols-2 items-center gap-6 sm:grid-cols-3 md:grid-cols-6">
+          <div className="mt-10 grid grid-cols-2 items-center gap-6 md:grid-cols-4">
             {partnerLogos.map((logo) => (
               <div key={logo.src} className="flex justify-center">
                 <img
-                  src={`${imageBase}/discover-lp-new/images/${logo.src}`}
+                  src={logo.src}
                   alt={logo.alt}
-                  className="max-h-20 max-w-[120px] object-contain grayscale transition hover:grayscale-0"
+                  className="h-48 w-full object-cover grayscale transition hover:grayscale-0"
                 />
               </div>
             ))}
@@ -1078,11 +1061,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============== THE PATHWAYS DIFFERENCE ============== */}
+      {/* ============== THE SDPS DIFFERENCE ============== */}
       <section id="difference" className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-light text-[#e84135] md:text-4xl">
-            The Pathways Difference
+            The SDPS Difference
           </h2>
           <div className="mt-12 space-y-16">
             {differenceItems.map((item) => (
@@ -1120,20 +1103,20 @@ export default function Home() {
       <section className="bg-[#f7f4ed] py-14">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-light text-[#e84135] md:text-4xl">
-            Trending @ Pathways
+            Life At SDPS
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <a href="#" className="group overflow-hidden">
               <img
-                src={`${imageBase}/discover-lp-new/images/homepage/trending-left-new.jpg`}
-                alt="Holding Hands at Pathways"
+                src={`${imageBase}/wp-content/uploads/2025/10/usp-2-683x1024.jpg`}
+                alt="Sports at SDPS"
                 className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-105"
               />
             </a>
             <a href="#" className="group overflow-hidden">
               <img
-                src={`${imageBase}/discover-lp-new/images/homepage/trending-right.jpg`}
-                alt="Pathways UTP"
+                src={`${imageBase}/wp-content/uploads/2025/10/usp-4-683x1024.jpg`}
+                alt="Overall development at SDPS"
                 className="h-[360px] w-full object-cover transition duration-700 group-hover:scale-105"
               />
             </a>
@@ -1145,7 +1128,7 @@ export default function Home() {
       <section className="bg-[#e2f0e8] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-xl font-bold uppercase tracking-wide text-[#078e86] md:text-2xl">
-            Voices of Our Community
+            SDPS Learning Values
           </h2>
 
           <div className="relative mt-8 min-h-[280px]">
@@ -1184,27 +1167,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============== ALUMNI MARQUEE ============== */}
+      {/* ============== FACILITIES MARQUEE ============== */}
       <section className="bg-white py-14">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-3xl font-light text-[#e84135] md:text-4xl">
-            Pathways of <span className="font-normal">our Alumni</span>
+            Campus <span className="font-normal">Facilities</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#173b4a]">
-            Our alumni network at Pathways School Noida extends across the
-            globe, with graduates pursuing diverse fields at both national and
-            international universities.
+            The SDPS campus supports daily school life with facilities for
+            learning, wellbeing, activity, and practical exploration.
           </p>
         </div>
 
         <div className="mt-10 overflow-hidden">
           <div className="flex animate-[marquee_40s_linear_infinite] gap-10 whitespace-nowrap">
-            {[...universityLogos, ...universityLogos].map((logo, i) => (
+            {[...facilityImages, ...facilityImages].map((logo, i) => (
               <img
                 key={`${logo}-${i}`}
-                src={`${imageBase}/discover-lp-new/images/${logo}`}
-                alt=""
-                className="h-16 max-w-[120px] flex-shrink-0 object-contain"
+                src={logo}
+                alt="SDPS facility"
+                className="h-36 w-28 flex-shrink-0 object-cover"
               />
             ))}
           </div>
@@ -1233,11 +1215,11 @@ export default function Home() {
               The
             </p>
             <h2 className="mt-4 text-4xl font-light uppercase leading-none tracking-wide md:text-6xl">
-              Campus
+              Facilities
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-sm leading-7 md:text-base">
-              A green, open and thoughtfully designed learning environment for
-              academics, sport, creativity and community life.
+              A complete school environment with a swimming pool, mess, library,
+              and hi-tech labs for learning, wellbeing, and discovery.
             </p>
             <div className="mt-7">
               <PrimaryButton variant="teal">Explore</PrimaryButton>
@@ -1252,14 +1234,14 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
             <div>
               <img
-                src={`${imageBase}/assets/img/client1-noida.svg`}
-                alt="Pathways School Noida"
+                src={logoSrc}
+                alt="SDPS International School"
                 className="h-16 rounded-sm bg-white px-3 py-2"
               />
               <p className="mt-5 text-sm leading-6 text-white/85">
-                Sector 100, Noida – 201304
+                Khandwa Road, Opp. Bilawali Tank,
                 <br />
-                Uttar Pradesh, India
+                Indore (M.P.) 452020
               </p>
               <div className="mt-5 flex gap-3">
                 {["Instagram", "Facebook", "Twitter", "Youtube", "Linkedin"].map(
@@ -1296,7 +1278,7 @@ export default function Home() {
 
         <div className="border-t border-white/15">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-4 text-[11px] text-white/75 md:flex-row">
-            <p>Copyright © 2024 Pathways School Noida. All rights reserved.</p>
+            <p>Copyright � 2024 SDPS International School. All rights reserved.</p>
             <p>
               Site By:{" "}
               <a href="#" className="text-[#f7d046] hover:underline">
