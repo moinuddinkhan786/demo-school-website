@@ -752,7 +752,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white font-sans text-[#17082d]">
+    <main className="min-h-screen bg-[#fffeec] font-sans text-[#17082d]">
       {/* ============== HEADER ============== */}
       <header className="sticky top-0 z-50 border-b border-black/5 bg-white shadow-sm">
         {/* Top utility bar */}
@@ -965,7 +965,7 @@ export default function Home() {
       </section>
 
       {/* ============== "A FOUNDATION FOR" TABS ============== */}
-      <section id="roadmap" className="bg-[#ffffff] py-14">
+      <section id="roadmap" className="bg-[#fffeec] py-14">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
             <h2 className="text-2xl font-light leading-tight text-[#17082d] md:text-4xl">
@@ -1068,7 +1068,7 @@ export default function Home() {
       </section>
 
       {/* ============== EXCELLENCE LOGOS ============== */}
-      <section className="bg-[#ffffff] py-14">
+      <section className="bg-[#fffeec] py-14">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-2xl font-light text-[#17082d] md:text-3xl">
             Facilities
@@ -1094,7 +1094,7 @@ export default function Home() {
       </section>
 
       {/* ============== THE SDPS DIFFERENCE ============== */}
-      <section id="difference" className="bg-white py-16">
+      <section id="difference" className="bg-[#fffeec] py-16">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-light text-[#17082d] md:text-4xl">
             The SDPS Difference
@@ -1118,12 +1118,18 @@ export default function Home() {
                     Read More <span>-&gt;</span>
                   </button>
                 </div>
-                <div className="overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-[320px] w-full object-cover transition duration-700 hover:scale-105"
-                  />
+                <div className="relative p-5 md:p-7">
+                  <span className="pointer-events-none absolute right-0 top-0 h-24 w-24 border-r-4 border-t-4 border-[#17082d]" />
+                  <span className="pointer-events-none absolute right-3 top-3 h-24 w-24 border-r-2 border-t-2 border-[#17082d]/70" />
+                  <span className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 border-b-4 border-l-4 border-[#17082d]" />
+                  <span className="pointer-events-none absolute bottom-3 left-3 h-24 w-24 border-b-2 border-l-2 border-[#17082d]/70" />
+                  <div className="overflow-hidden bg-white shadow-sm">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-[320px] w-full object-cover transition duration-700 hover:scale-105"
+                    />
+                  </div>
                 </div>
               </article>
             ))}
@@ -1132,7 +1138,7 @@ export default function Home() {
       </section>
 
       {/* ============== TRENDING ============== */}
-      <section className="bg-[#ffffff] py-14">
+      <section className="bg-[#fffeec] py-14">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-light text-[#17082d] md:text-4xl">
             Activities
@@ -1157,7 +1163,7 @@ export default function Home() {
       </section>
 
       {/* ============== TESTIMONIALS ============== */}
-      <section className="bg-[#ffffff] py-16">
+      <section className="bg-[#fffeec] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-xl font-bold uppercase tracking-wide text-[#17082d] md:text-2xl">
             We Are Best Known For
@@ -1200,7 +1206,7 @@ export default function Home() {
       </section>
 
       {/* ============== FACILITIES MARQUEE ============== */}
-      <section className="bg-white py-14">
+      <section className="bg-[#fffeec] py-14">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h2 className="text-3xl font-light text-[#17082d] md:text-4xl">
             Activities <span className="font-normal">and Facilities</span>
