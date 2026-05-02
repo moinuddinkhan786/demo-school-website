@@ -303,8 +303,7 @@ const schoolContact = {
     "https://www.google.com/maps?q=SDPS%20International%20School%20Khandwa%20Road%20Indore&output=embed",
 };
 
-const campusImage =
-  "https://images.pexels.com/photos/17792676/pexels-photo-17792676.jpeg?auto=compress&cs=tinysrgb&w=1800";
+const campusImage = `${schoolLegacyBase}/bg_pic3.jpg`;
 const heroVideo = "/sdps-hero-video.mp4";
 
 // ---------------- COMPONENTS ----------------
