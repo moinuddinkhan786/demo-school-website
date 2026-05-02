@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import type { FormEvent, ReactNode } from "react";
 
 const imageBase = "https://www.pathwaysnoida.edu.in";
 
@@ -290,9 +290,11 @@ const schoolContact = {
 function PrimaryButton({
   children,
   variant = "red",
+  onClick,
 }: {
   children: ReactNode;
   variant?: "red" | "teal";
+  onClick?: () => void;
 }) {
   const colors =
     variant === "red"
@@ -300,6 +302,7 @@ function PrimaryButton({
       : "bg-[#008579] hover:bg-[#00695f]";
   return (
     <button
+      onClick={onClick}
       className={`inline-flex items-center gap-2 rounded-sm px-6 py-3 text-[12px] font-semibold uppercase tracking-wider text-white shadow-md transition ${colors}`}
     >
       {children}
@@ -311,9 +314,11 @@ function PrimaryButton({
 function VisitUsModal({
   open,
   onClose,
+  onGetInTouch,
 }: {
   open: boolean;
   onClose: () => void;
+  onGetInTouch: () => void;
 }) {
   return (
     <div
@@ -428,12 +433,12 @@ function VisitUsModal({
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={`mailto:${schoolContact.email}`}
+              <button
+                onClick={onGetInTouch}
                 className="inline-flex items-center justify-center rounded-sm bg-[#e84135] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-white shadow-md transition hover:bg-[#c93529]"
               >
                 Get In Touch
-              </a>
+              </button>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                   `${schoolContact.name}, ${schoolContact.address}`
@@ -452,6 +457,211 @@ function VisitUsModal({
   );
 }
 
+function EnquiryDrawer({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
+  return (
+    <div
+      className={`fixed inset-0 z-[90] transition duration-200 ease-out ${
+        open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+      }`}
+      aria-hidden={!open}
+    >
+      <button
+        className="absolute inset-0 bg-[#173b4a]/45 backdrop-blur-[2px]"
+        onClick={onClose}
+        aria-label="Close enquiry form"
+      />
+
+      <aside
+        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-[#f7f4ed] shadow-2xl transition duration-300 ease-out ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="enquiry-drawer-title"
+      >
+        <div className="border-b border-[#173b4a]/15 bg-white px-6 py-5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#008579]">
+                Enquiry Form
+              </p>
+              <h2
+                id="enquiry-drawer-title"
+                className="mt-2 text-2xl font-light leading-tight text-[#e84135]"
+              >
+                Get in touch with admissions
+              </h2>
+            </div>
+            <button
+              onClick={onClose}
+              className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-sm border border-[#173b4a]/15 bg-[#f7f4ed] text-xl leading-none text-[#173b4a] transition hover:border-[#e84135] hover:text-[#e84135]"
+              aria-label="Close enquiry drawer"
+            >
+              x
+            </button>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-[#173b4a]">
+            Share your details and the admissions team will connect with you.
+          </p>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-6 py-6">
+          {submitted ? (
+            <div className="border-y border-[#173b4a]/15 py-8">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#008579]">
+                Form Received
+              </p>
+              <h3 className="mt-3 text-2xl font-light text-[#e84135]">
+                Thank you for reaching out.
+              </h3>
+              <p className="mt-4 text-sm leading-7 text-[#173b4a]">
+                Your enquiry is ready on the website side. Connect this form to
+                your backend or email service when you want to collect real
+                submissions.
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-6 rounded-sm border border-[#008579] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-[#008579] transition hover:bg-[#008579] hover:text-white"
+              >
+                Send Another Enquiry
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <label className="block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                  Full Name
+                </span>
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  className="mt-2 w-full rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                  placeholder="Enter your name"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                  Contact Number
+                </span>
+                <input
+                  required
+                  name="contact"
+                  type="tel"
+                  className="mt-2 w-full rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                  placeholder="+91 98765 43210"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                  Gmail ID
+                </span>
+                <input
+                  required
+                  name="email"
+                  type="email"
+                  className="mt-2 w-full rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                  placeholder="name@gmail.com"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                  Address
+                </span>
+                <textarea
+                  required
+                  name="address"
+                  rows={3}
+                  className="mt-2 w-full resize-none rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                  placeholder="City, state, and full address"
+                />
+              </label>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                    Student Grade
+                  </span>
+                  <select
+                    name="grade"
+                    className="mt-2 w-full rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    <option>Early Years</option>
+                    <option>Primary Years</option>
+                    <option>Middle Years</option>
+                    <option>Diploma Program</option>
+                    <option>Career-related Program</option>
+                  </select>
+                </label>
+
+                <label className="block">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                    Visit Type
+                  </span>
+                  <select
+                    name="visitType"
+                    className="mt-2 w-full rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                    defaultValue="Campus Visit"
+                  >
+                    <option>Campus Visit</option>
+                    <option>Admission Enquiry</option>
+                    <option>Callback Request</option>
+                  </select>
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#173b4a]">
+                  Message
+                </span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  className="mt-2 w-full resize-none rounded-sm border border-[#173b4a]/15 bg-white px-4 py-3 text-sm text-[#173b4a] outline-none transition focus:border-[#e84135] focus:ring-2 focus:ring-[#e84135]/15"
+                  placeholder="Tell us what you would like to know"
+                />
+              </label>
+
+              <button
+                type="submit"
+                className="w-full rounded-sm bg-[#e84135] px-5 py-3 text-[12px] font-semibold uppercase tracking-wider text-white shadow-md transition hover:bg-[#c93529]"
+              >
+                Submit Enquiry
+              </button>
+            </form>
+          )}
+        </div>
+
+        <div className="border-t border-[#173b4a]/15 bg-white px-6 py-4 text-xs leading-5 text-[#173b4a]">
+          {schoolContact.name}
+          <br />
+          {schoolContact.phone} | {schoolContact.email}
+        </div>
+      </aside>
+    </div>
+  );
+}
+
 // ---------------- PAGE ----------------
 
 export default function Home() {
@@ -459,6 +669,7 @@ export default function Home() {
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visitModalOpen, setVisitModalOpen] = useState(false);
+  const [enquiryDrawerOpen, setEnquiryDrawerOpen] = useState(false);
 
   const currentTab =
     foundationTabs.find((t) => t.key === activeTab) ?? foundationTabs[0];
@@ -475,17 +686,25 @@ export default function Home() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setVisitModalOpen(false);
+        setEnquiryDrawerOpen(false);
       }
     };
 
-    document.body.style.overflow = visitModalOpen ? "hidden" : "";
+    document.body.style.overflow =
+      visitModalOpen || enquiryDrawerOpen ? "hidden" : "";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [visitModalOpen]);
+  }, [visitModalOpen, enquiryDrawerOpen]);
+
+  function openEnquiryDrawer() {
+    setVisitModalOpen(false);
+    setMobileMenuOpen(false);
+    setEnquiryDrawerOpen(true);
+  }
 
   return (
     <main className="min-h-screen bg-white font-sans text-[#173b4a]">
@@ -540,7 +759,10 @@ export default function Home() {
 
           {/* Right buttons */}
           <div className="flex items-center gap-2">
-            <button className="hidden rounded-sm bg-[#008579] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-[#00695f] md:block">
+            <button
+              onClick={openEnquiryDrawer}
+              className="hidden rounded-sm bg-[#008579] px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-[#00695f] md:block"
+            >
               Let&apos;s Talk
             </button>
             <button
@@ -571,7 +793,10 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-4 flex gap-2">
-              <button className="flex-1 rounded-sm bg-[#008579] py-2 text-[11px] font-bold uppercase text-white">
+              <button
+                onClick={openEnquiryDrawer}
+                className="flex-1 rounded-sm bg-[#008579] py-2 text-[11px] font-bold uppercase text-white"
+              >
                 Let&apos;s Talk
               </button>
               <button
@@ -591,6 +816,12 @@ export default function Home() {
       <VisitUsModal
         open={visitModalOpen}
         onClose={() => setVisitModalOpen(false)}
+        onGetInTouch={openEnquiryDrawer}
+      />
+
+      <EnquiryDrawer
+        open={enquiryDrawerOpen}
+        onClose={() => setEnquiryDrawerOpen(false)}
       />
 
       {/* ============== HERO ============== */}
@@ -618,7 +849,9 @@ export default function Home() {
             great human beings.
           </p>
           <div className="mt-8">
-            <PrimaryButton variant="red">Get In Touch</PrimaryButton>
+            <PrimaryButton variant="red" onClick={openEnquiryDrawer}>
+              Get In Touch
+            </PrimaryButton>
           </div>
         </div>
       </section>

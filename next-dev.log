@@ -50,3 +50,6 @@ Creating turbopack project { dir: 'E:\\aib innovations\\NEW WEBSITE\\my-app', te
  GET /about/moin 200 in 949ms (next.js: 240ms, application-code: 709ms)
 ✓ Compiled in 198ms
 ✓ Compiled in 1444ms
+ GET / 200 in 943ms (next.js: 521ms, application-code: 422ms)
+✓ Compiled in 3.3s
+ GET / 200 in 4.6s (next.js: 2.9s, application-code: 1713ms)
