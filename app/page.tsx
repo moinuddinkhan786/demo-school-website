@@ -305,9 +305,7 @@ const schoolContact = {
 
 const campusImage =
   "https://images.pexels.com/photos/17792676/pexels-photo-17792676.jpeg?auto=compress&cs=tinysrgb&w=1800";
-const heroVideo = "https://assets.mixkit.co/videos/35954/35954-720.mp4";
-const heroVideoPoster =
-  "https://assets.mixkit.co/videos/35954/35954-thumb-720-0.jpg";
+const heroVideo = "/sdps-hero-video.mp4";
 
 // ---------------- COMPONENTS ----------------
 
@@ -929,7 +927,6 @@ export default function Home() {
                 loop
                 playsInline
                 preload={heroVideoReady ? "auto" : "none"}
-                poster={heroVideoPoster}
               >
                 {heroVideoReady && <source src={heroVideo} type="video/mp4" />}
               </video>
